@@ -1,5 +1,6 @@
 package cl.vero.stressless;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,8 +25,12 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Dialog dialog = new Dialog(MainActivity.this);
+                dialog.requestWindowFeature(1);
+                dialog.setContentView(R.layout.dialog_pending);
+
+                dialog.getWindow().setLayout(-1,-2);
+                dialog.show();
             }
         });
     }
