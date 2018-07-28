@@ -11,8 +11,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+
+import cl.vero.stressless.models.Pending;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MainActivityFragment mainActivityFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +28,34 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mainActivityFragment = (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog = new Dialog(MainActivity.this);
+                final Dialog dialog = new Dialog(MainActivity.this);
                 dialog.requestWindowFeature(1);
                 dialog.setContentView(R.layout.dialog_pending);
+
+                ImageButton button = dialog.findViewById(R.id.savePendingBtn);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        EditText input = dialog.findViewById(R.id.pendingEt);
+                        String name = input.getText().toString();
+                        if (name.trim().length() > 0){
+                            Pending pending = new Pending();
+                            pending.setName(name);
+                            pending.setDone(false);
+                            pending.save();
+                            mainActivityFragment.updateList(pending);
+                        }
+
+                        dialog.dismiss();
+                    }
+                });
 
                 dialog.getWindow().setLayout(-1,-2);
                 dialog.show();

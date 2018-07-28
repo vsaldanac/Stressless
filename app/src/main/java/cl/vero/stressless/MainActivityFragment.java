@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ import cl.vero.stressless.models.Pending;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements PendingClickListener{
+
+    private PendingsAdapter adapter;
 
     public MainActivityFragment() {
     }
@@ -45,9 +48,19 @@ public class MainActivityFragment extends Fragment {
             pending.save();
         }
 
-        PendingsAdapter adapter = new PendingsAdapter();
+        adapter = new PendingsAdapter(this);
         recyclerView.setAdapter(adapter);
 
+
+    }
+
+    public void updateList(Pending pending){
+        adapter.update(pending);
+
+    }
+
+    @Override
+    public void clickedId(long id) {
 
     }
 }
