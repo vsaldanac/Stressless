@@ -1,5 +1,6 @@
 package cl.vero.stressless;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,8 @@ import cl.vero.stressless.models.Pending;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment implements PendingClickListener{
+
+    public static final String ITEM_KEY = "cl.vero.stressless.KEY.ITEM_KEY";
 
     private PendingsAdapter adapter;
 
@@ -41,7 +44,7 @@ public class MainActivityFragment extends Fragment implements PendingClickListen
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        for (int i = 0; i < 20 ; i++) {
+        for (int i = 0; i < 9 ; i++) {
             Pending pending = new Pending();
             pending.setName(String.valueOf(i));
             pending.setDone(false);
@@ -61,6 +64,9 @@ public class MainActivityFragment extends Fragment implements PendingClickListen
 
     @Override
     public void clickedId(long id) {
+        Intent intent = new Intent(getContext(),DetailsActivity.class);
+        intent.putExtra(ITEM_KEY,id);
+        startActivity(intent);
 
     }
 }
