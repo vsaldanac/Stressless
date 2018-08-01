@@ -1,13 +1,11 @@
-package cl.vero.stressless;
+package cl.vero.stressless.Views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.util.List;
-
+import cl.vero.stressless.R;
 import cl.vero.stressless.models.Pending;
 
 public class DetailsActivity extends AppCompatActivity {

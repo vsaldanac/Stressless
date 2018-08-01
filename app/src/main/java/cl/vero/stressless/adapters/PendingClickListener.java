@@ -1,4 +1,4 @@
-package cl.vero.stressless;
+package cl.vero.stressless.adapters;
 
 public interface PendingClickListener {
 

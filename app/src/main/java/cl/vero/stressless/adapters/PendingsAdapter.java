@@ -10,10 +10,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.logging.Handler;
 
 import cl.vero.stressless.Data.Queries;
-import cl.vero.stressless.PendingClickListener;
 import cl.vero.stressless.R;
 import cl.vero.stressless.models.Pending;
 
